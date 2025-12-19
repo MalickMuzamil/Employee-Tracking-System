@@ -144,10 +144,15 @@ ng serve
 Create .env inside backend:
 
 PORT=5000
+
 DB_HOST=localhost
+
 DB_USER=root
+
 DB_PASSWORD=yourpassword
+
 DB_NAME=employee_management
+
 JWT_SECRET=your_secret_key
 
 ---
