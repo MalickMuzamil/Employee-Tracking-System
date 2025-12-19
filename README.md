@@ -160,9 +160,13 @@ JWT_SECRET=your_secret_key
 📌 Project Highlights
 
 ✅ Payroll + Attendance automation
+
 ✅ Daily / Weekly / Monthly scheduling
+
 ✅ Scalable monorepo architecture
+
 ✅ Clean & maintainable codebase
+
 ✅ Enterprise-ready design
 
 ---
