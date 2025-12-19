@@ -1,0 +1,83 @@
+<div class="auth-wrapper d-flex justify-content-center align-items-center bg-light">
+
+  <div class="auth-card card shadow p-4">
+
+    <h3 class="text-center mb-1 fw-bold">Create Your Account ✨</h3>
+    <p class="text-center text-muted mb-4">Signup to continue</p>
+
+    <form #f="ngForm" (ngSubmit)="signup(f)">
+
+      <!-- NAME -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Name</label>
+
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="name"
+          name="name"
+          required
+          #nameRef="ngModel"
+        />
+
+        <!-- ERROR -->
+        <div *ngIf="nameRef.invalid && nameRef.touched" class="text-danger small mt-1">
+          Name is required.
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Email</label>
+
+        <input
+          type="email"
+          class="form-control"
+          [(ngModel)]="email"
+          name="email"
+          required
+          email
+          #emailRef="ngModel"
+        />
+
+        <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger small mt-1">
+          <span *ngIf="emailRef.errors?.['required']">Email is required.</span>
+          <span *ngIf="emailRef.errors?.['email']">Enter a valid email.</span>
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Password</label>
+
+        <input
+          type="password"
+          class="form-control"
+          [(ngModel)]="password"
+          name="password"
+          required
+          minlength="6"
+          #passwordRef="ngModel"
+        />
+
+        <div *ngIf="passwordRef.invalid && passwordRef.touched" class="text-danger small mt-1">
+          <span *ngIf="passwordRef.errors?.['required']">Password is required.</span>
+          <span *ngIf="passwordRef.errors?.['minlength']">Password must be at least 6 characters.</span>
+        </div>
+      </div>
+
+      <!-- BUTTON -->
+      <button [disabled]="f.invalid" type="submit" class="btn btn-primary w-100 py-2">
+        Signup
+      </button>
+
+      <p class="text-center mt-3">
+        Already have an account?
+        <a routerLink="/login" class="fw-semibold">Login</a>
+      </p>
+
+    </form>
+
+  </div>
+
+</div>

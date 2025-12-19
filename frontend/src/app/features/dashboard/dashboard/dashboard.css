@@ -1,0 +1,84 @@
+.dashboard-container {
+  padding: 25px;
+}
+
+.dash-title {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Stats Cards */
+.stat-card {
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: .3s;
+  width: 100%;
+  min-height: 130px;
+}
+
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+.stat-title {
+  margin: 0;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.stat-value {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Icons */
+.icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Quick Buttons */
+.quick-btn {
+  width: 100%;
+  background: #4e73df;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  transition: .3s;
+}
+
+.quick-btn:hover {
+  background: #3756c2;
+  transform: translateY(-2px);
+}

@@ -1,0 +1,8 @@
+.auth-wrapper {
+  height: 100vh;
+}
+
+.auth-card {
+  width: 380px;
+  border-radius: 12px;
+}

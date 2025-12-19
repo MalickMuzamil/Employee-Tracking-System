@@ -1,0 +1,54 @@
+/* Main Page Title */
+.page-title {
+  font-size: 22px;
+  color: #222;
+}
+
+.filter-chip {
+  background: #eef6ff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid #cfe4ff;
+  color: #0b5ed7;
+  display: flex;
+  align-items: center;
+}
+
+.filter-bar {
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.filter-input {
+  width: 180px;
+  transition: all 0.25s ease-in-out;
+}
+
+.filter-input:focus {
+  width: 240px;
+  border-color: #0d6efd;
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.25);
+}
+
+.filter-select {
+  width: 150px;
+  transition: 0.2s;
+}
+
+.filter-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.25);
+}
+
+.add-btn {
+  padding: 6px 14px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.add-btn:hover {
+  background: #0a58ca;
+}

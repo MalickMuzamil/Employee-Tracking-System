@@ -1,0 +1,62 @@
+<div class="sidebar shadow-sm" 
+     [class.collapsed]="isCollapsed"
+     [class.mobile-collapsed]="isMobile">
+
+  <div class="sidebar-header d-flex align-items-center justify-content-between">
+    <span class="fw-bold text-primary fs-5 d-flex align-items-center">
+      <i class="fa-solid fa-building-user me-2"></i> 
+      <span class="sidebar-title">EMS</span>
+    </span>
+
+    <button class="btn btn-sm btn-light toggle-btn" (click)="toggle()">
+      <i class="fa-solid" [ngClass]="isCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'"></i>
+    </button>
+  </div>
+
+  <ul class="nav flex-column mt-3">
+
+    <li class="nav-item">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="fa-solid fa-home"></i> 
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/employees" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="fa-solid fa-users"></i> 
+        <span>Employees</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/salary" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="fa-solid fa-coins"></i>
+        <span>Employee Salary</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/duty-toaster" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="fa-solid fa-clock"></i>
+        <span>Duty Toaster</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/attendance-record" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance Record</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/employeeCheck" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="fa-solid fa-user-check"></i>
+        <span>Employee Check</span>
+      </a>
+    </li>
+
+  </ul>
+
+</div>

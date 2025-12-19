@@ -1,0 +1,109 @@
+<div class="attendance-container">
+
+    <!-- ================================= -->
+    <!-- 1) EMPLOYEE SELECT -->
+    <!-- ================================= -->
+
+    <!-- Skeleton -->
+    <app-skeleton *ngIf="employees.length === 0" [lines]="1"></app-skeleton>
+
+    <div *ngIf="employees.length > 0" class="employee-select">
+        <label>Select Employee</label>
+        <select [(ngModel)]="selectedEmployee" (change)="loadEmployeeAttendance()">
+            <option value="">Select Employee</option>
+            <option *ngFor="let emp of employees" [value]="emp.employee_id">
+                {{ emp.name }} — {{ emp.department_name }}
+            </option>
+        </select>
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- 2) EMPTY STATE (if no employee selected) -->
+    <!-- ================================= -->
+
+    <div *ngIf="employees.length > 0 && !selectedEmployee" class="empty-state">
+        <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" class="empty-icon" />
+        <h3>Select Employee to view today's attendance</h3>
+        <p>Please choose an employee from the dropdown above.</p>
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- 3) MAIN CARD LOADING SKELETON -->
+    <!-- ================================= -->
+
+    <app-skeleton *ngIf="selectedEmployee && !attendanceLoaded" [lines]="8"></app-skeleton>
+
+
+    <!-- ================================= -->
+    <!-- 4) MAIN ATTENDANCE CARD -->
+    <!-- ================================= -->
+    <div class="clock-card" *ngIf="attendanceLoaded">
+
+        <h2 class="title">Employee Attendance Monitor</h2>
+
+        <!-- OFF DAY BANNER -->
+        <div *ngIf="isOffDay" class="off-day-banner">
+            <div class="off-icon">🛑</div>
+            <div class="off-text">
+                <h3>Today is an OFF DAY</h3>
+                <p>This employee is not scheduled for duty today.</p>
+            </div>
+        </div>
+
+
+        <!-- STATUS ROW -->
+        <div class="status-row">
+
+            <div class="status-box">
+                <div class="status-title">Check In</div>
+                <div class="status-time">
+                    {{ isOffDay ? '--:--' : (checkInTime || '--:--') }}
+                </div>
+                <div class="status-sub">
+                    Expected: {{ isOffDay ? '--:--' : dutyStart }}
+                </div>
+            </div>
+
+            <div class="status-box">
+                <div class="status-title">Check Out</div>
+                <div class="status-time">
+                    {{ isOffDay ? '--:--' : (checkOutTime || '--:--') }}
+                </div>
+                <div class="status-sub">
+                    Expected: {{ isOffDay ? '--:--' : dutyEnd }}
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- TIMER -->
+        <div class="timer-bar">
+            <div class="timer-text">
+                {{ isOffDay ? '00:00:00' : elapsedTime }}
+            </div>
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="action-buttons">
+            <button [disabled]="isOffDay || checkInTime"
+                    class="btn checkin"
+                    (click)="markCheckIn()">
+                Check In
+            </button>
+
+            <button [disabled]="isOffDay || !checkInTime || checkOutTime"
+                    class="btn checkout"
+                    (click)="markCheckOut()">
+                Check Out
+            </button>
+        </div>
+
+    </div>
+
+</div>

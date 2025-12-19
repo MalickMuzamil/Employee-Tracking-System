@@ -1,0 +1,263 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+  <div class="d-flex align-items-center gap-2">
+    <h4 class="page-title m-0 fw-bold">Employees</h4>
+
+    <span *ngIf="selectedFilter && filterValue" class="filter-chip">
+      <i class="fa fa-filter me-1"></i>
+      {{ selectedFilter | titlecase }}:
+      <strong>"{{ filterValue }}"</strong>
+    </span>
+  </div>
+
+  <div class="d-flex align-items-center gap-2 flex-wrap filter-bar">
+
+    <!-- Column Dropdown -->
+    <select class="form-select filter-select" [(ngModel)]="selectedFilter" (change)="applyFilter()">
+      <option value="">Filter By</option>
+      <option *ngFor="let col of columns" [value]="col.field" [disabled]="col.field === 'picture'">
+        {{ col.title }}
+      </option>
+    </select>
+
+    <!-- Filter Input -->
+    <input class="form-control filter-input" placeholder="Type to filter..." 
+           [(ngModel)]="filterValue" (input)="applyFilter()" [disabled]="!selectedFilter" />
+
+    <!-- Add Button -->
+    <button class="btn btn-primary btn-sm add-btn" (click)="openAdd()">
+      <i class="fa fa-plus me-1"></i>
+      Add Employee
+    </button>
+
+  </div>
+
+</div>
+
+<!-- TABLE -->
+<app-table 
+  [loading]="loading" 
+  [columns]="columns" 
+  [data]="pagedEmployees" 
+  [hiddenColumn]="hiddenColumn"
+  (edit)="openEdit($event)" 
+  (delete)="onDelete($event)">
+</app-table>
+
+<!-- PAGINATION -->
+<app-pagination 
+  class="d-flex justify-content-end" 
+  [totalItems]="filteredEmployees.length" 
+  [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage" 
+  (pageChange)="onPageChange($event)">
+</app-pagination>
+
+
+
+<!-- ============================
+      ADD EMPLOYEE MODAL
+=============================== -->
+@if (showAddModal) {
+<div class="modal-backdrop fade show"></div>
+<div class="modal d-block" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Add Employee</h5>
+        <button type="button" class="btn-close" (click)="showAddModal=false"></button>
+      </div>
+
+      <form #addForm="ngForm" (ngSubmit)="submitAdd(addForm)" novalidate>
+        <div class="modal-body">
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input name="name" class="form-control" [(ngModel)]="form.name" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input name="email" class="form-control" [(ngModel)]="form.email" required email />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Contact</label>
+              <input name="contact" class="form-control" [(ngModel)]="form.contact" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Gender</label>
+              <select name="gender" class="form-select" [(ngModel)]="form.gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Address</label>
+              <input name="address" class="form-control" [(ngModel)]="form.address" />
+            </div>
+
+            <!-- Department DROPDOWN -->
+            <div class="col-md-6">
+              <label class="form-label">Department</label>
+              <select name="department" class="form-select" [(ngModel)]="form.department" required>
+                <option value="">Select Department</option>
+                <option *ngFor="let d of departments" [value]="d">{{ d }}</option>
+              </select>
+            </div>
+
+            <!-- Designation DROPDOWN -->
+            <div class="col-md-6">
+              <label class="form-label">Designation</label>
+              <select name="designation" class="form-select" [(ngModel)]="form.designation" required>
+                <option value="">Select Designation</option>
+                <option *ngFor="let des of designations" [value]="des">{{ des }}</option>
+              </select>
+            </div>
+
+            <!-- Grade DROPDOWN -->
+            <div class="col-md-6">
+              <label class="form-label">Grade</label>
+              <select name="grade" class="form-select" [(ngModel)]="form.grade" required>
+                <option value="">Select Grade</option>
+                <option *ngFor="let g of grades" [value]="g">{{ g }}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Picture</label>
+              <input type="file" class="form-control" (change)="onFileSelect($event)" />
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" (click)="showAddModal=false">Cancel</button>
+          <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+}
+
+
+
+<!-- ============================
+      EDIT EMPLOYEE MODAL
+=============================== -->
+@if (showEditModal) {
+<div class="modal-backdrop fade show"></div>
+<div class="modal d-block" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Employee</h5>
+        <button type="button" class="btn-close" (click)="showEditModal=false"></button>
+      </div>
+
+      <form #editForm="ngForm" (ngSubmit)="submitEdit(editForm)" novalidate>
+        <div class="modal-body">
+
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input name="name" class="form-control" [(ngModel)]="form.name" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input name="email" class="form-control" [(ngModel)]="form.email" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Contact</label>
+              <input name="contact" class="form-control" [(ngModel)]="form.contact" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Gender</label>
+              <select name="gender" class="form-select" [(ngModel)]="form.gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Address</label>
+              <input name="address" class="form-control" [(ngModel)]="form.address" />
+            </div>
+
+            <!-- Department DROPDOWN -->
+            <div class="col-md-6">
+              <label class="form-label">Department</label>
+              <select name="department" class="form-select" [(ngModel)]="form.department" required>
+                <option value="">Select Department</option>
+                <option *ngFor="let d of departments" [value]="d">{{ d }}</option>
+              </select>
+            </div>
+
+            <!-- Designation DROPDOWN -->
+            <div class="col-md-6">
+              <label class="form-label">Designation</label>
+              <select name="designation" class="form-select" [(ngModel)]="form.designation" required>
+                <option value="">Select Designation</option>
+                <option *ngFor="let des of designations" [value]="des">{{ des }}</option>
+              </select>
+            </div>
+
+            <!-- Grade DROPDOWN -->
+            <div class="col-md-6">
+              <label class="form-label">Grade</label>
+              <select name="grade" class="form-select" [(ngModel)]="form.grade" required>
+                <option value="">Select Grade</option>
+                <option *ngFor="let g of grades" [value]="g">{{ g }}</option>
+              </select>
+            </div>
+          </div>
+
+          @if (form.picture) {
+          <div class="col-md-3 text-center my-3">
+            <p class="fw-bold">Current Picture</p>
+
+            <div class="p-2 border rounded shadow-sm" style="background:#fafafa;">
+              <img [src]="form.picture"
+                style="width:120px;height:120px;object-fit:cover;border-radius:50%;border:2px solid #ddd;" />
+
+              <div class="mt-2">
+                <a [href]="form.picture" target="_blank" class="fw-semibold text-primary">
+                  View Full Image
+                </a>
+              </div>
+            </div>
+          </div>
+          }
+
+          <div class="my-3">
+            <label class="form-label">Upload New Picture</label>
+            <input type="file" class="form-control" (change)="onFileSelect($event)" />
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="showEditModal=false">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+}

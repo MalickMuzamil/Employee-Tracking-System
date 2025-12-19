@@ -1,0 +1,68 @@
+<div class="auth-wrapper d-flex justify-content-center align-items-center bg-light">
+
+  <div class="auth-card card shadow p-4">
+
+    <h3 class="text-center mb-1 fw-bold">Welcome Back 👋</h3>
+    <p class="text-center text-muted mb-4">Login to StaffX EMS</p>
+
+    <form #f="ngForm" (ngSubmit)="login(f)">
+
+      <!-- EMAIL -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Email</label>
+
+        <input 
+          type="email"
+          class="form-control"
+          [(ngModel)]="email"
+          name="email"
+          required 
+          email
+          #emailRef="ngModel"
+        />
+
+        <!-- ERROR -->
+        <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger small mt-1">
+          <span *ngIf="emailRef.errors?.['required']">Email is required.</span>
+          <span *ngIf="emailRef.errors?.['email']">Enter a valid email address.</span>
+        </div>
+
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Password</label>
+
+        <input 
+          type="password"
+          class="form-control"
+          [(ngModel)]="password"
+          name="password"
+          required 
+          minlength="6"
+          #passwordRef="ngModel"
+        />
+
+        <!-- ERROR -->
+        <div *ngIf="passwordRef.invalid && passwordRef.touched" class="text-danger small mt-1">
+          <span *ngIf="passwordRef.errors?.['required']">Password is required.</span>
+          <span *ngIf="passwordRef.errors?.['minlength']">Password must be at least 6 characters.</span>
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+      <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="f.invalid">
+        Login
+      </button>
+
+      <p class="text-center mt-3">
+        Don’t have an account?
+        <a routerLink="/signup" class="fw-semibold">Signup</a>
+      </p>
+
+    </form>
+
+  </div>
+
+</div>

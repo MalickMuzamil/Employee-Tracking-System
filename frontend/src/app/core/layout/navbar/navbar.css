@@ -1,0 +1,43 @@
+/* Navbar */
+.navbar {
+  height: 65px;
+}
+
+/* Logo without expanding navbar height */
+.logo-img {
+  height: 85px;
+  margin-top: -12px;
+}
+
+@media (max-width: 992px) {
+  .logo-img {
+    height: 60px;
+    margin-top: -8px;
+  }
+}
+
+/* Search input */
+.search-box {
+  width: 100%;
+}
+
+/* Profile img */
+.user-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+/* Dropdown looks clean */
+.dropdown-menu {
+  border-radius: 10px !important;
+}
+
+/* Mobile menu background */
+@media (max-width: 992px) {
+  #navbarMenu {
+    background: white;
+    padding: 10px 0 15px;
+    border-radius: 10px;
+  }
+}

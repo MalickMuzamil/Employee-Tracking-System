@@ -1,0 +1,414 @@
+/* ---------------------------- */
+/* MAIN CONTAINER */
+/* ---------------------------- */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: "Inter", sans-serif;
+}
+
+/* ---------------------------- */
+/* TOP FILTERS */
+/* ---------------------------- */
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.filters select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d2d6dc;
+  background: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  flex: 1;
+}
+
+/* ---------------------------- */
+/* SELECTED EMPLOYEE CARD */
+/* ---------------------------- */
+.employee-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.employee-card h2 {
+  font-size: 26px;
+  color: #1b3dff;
+  margin-bottom: 15px;
+}
+
+.employee-card p {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.employee-card strong {
+  color: #333;
+}
+
+/* ---------------------------- */
+/* MONTHLY DUTY BOX */
+/* ---------------------------- */
+.shift-box {
+  padding: 25px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.shift-box h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1b3dff;
+}
+
+.shift-box label {
+  display: block;
+  margin: 8px 0 4px;
+  font-weight: 500;
+}
+
+.shift-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cfd2d6;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.btn-save {
+  padding: 12px 20px;
+  background: #4169e1;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---------------------------- */
+/* COMMON SHIFT BOX */
+/* ---------------------------- */
+
+.common-shift-box {
+  background: #f7f9ff;
+  padding: 18px;
+  border-radius: 10px;
+  margin: 15px 0 20px;
+  border: 1px solid #dce3ff;
+}
+
+.common-shift-box h4 {
+  font-size: 18px;
+  color: #1b3dff;
+  margin-bottom: 12px;
+}
+
+/* ---------------------------- */
+/* OFF-DAY BOX */
+/* ---------------------------- */
+
+.offday-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.offday-box label {
+  background: #eef2ff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #cdd6ff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.offday-box input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+/* ---------------------------- */
+/* APPLY COMMON SHIFT BUTTON */
+/* ---------------------------- */
+.btn-apply {
+  padding: 10px 16px;
+  background: #1b3dff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-apply:hover {
+  background: #0f2fd0;
+}
+
+/* ---------------------------- */
+/* DAILY TABLE */
+/* ---------------------------- */
+
+.daily-table {
+  margin-top: 25px;
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.daily-table h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #1b3dff;
+}
+
+.daily-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.daily-table th {
+  padding: 12px;
+  border-bottom: 2px solid #e8e8e8;
+  color: #333;
+  font-size: 15px;
+}
+
+.daily-table td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 14px;
+}
+
+/* Inputs inside table */
+.daily-table input[type="time"] {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #cfd2d6;
+}
+
+.daily-table input[type="checkbox"] {
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+/* Edit button */
+.edit-btn {
+  background: #f7a400;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #dd8e00;
+}
+
+/* ---------------------------- */
+/* TABLE BOX */
+/* ---------------------------- */
+.table-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.table-box h3 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 12px;
+  font-size: 15px;
+  color: #444;
+  border-bottom: 2px solid #eee;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #efefef;
+  font-size: 14px;
+}
+
+/* ---------------------------- */
+/* ACTION BUTTONS */
+/* ---------------------------- */
+.edit {
+  background: #f7a400;
+  border: none;
+  padding: 6px 14px;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.delete {
+  background: #e63946;
+  border: none;
+  padding: 6px 14px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* ------------------------------------- */
+/* TABS */
+/* ------------------------------------- */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e6e6e6;
+  padding-bottom: 5px;
+}
+
+.tabs button {
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  background: #f5f7ff;
+  color: #4169e1;
+  border: 1px solid #cfd5ff;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.tabs button:hover {
+  background: #eaf0ff;
+}
+
+.tabs button.active {
+  background: #4169e1;
+  color: white;
+  border-color: #4169e1;
+}
+
+/* ------------------------------------- */
+/* TAB CONTENT */
+/* ------------------------------------- */
+.tab-content {
+  padding-top: 15px;
+}
+
+/* ------------------------------------------------------------------ */
+/* WEEKLY TEMPLATE TABLE */
+/* ------------------------------------------------------------------ */
+.weekly-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.weekly-table th,
+.weekly-table td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.weekly-table input[type="time"] {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #cfd2d6;
+  width: 120px;
+}
+
+.weekly-table input[type="checkbox"] {
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+.weekly-table button {
+  padding: 6px 12px;
+  background: #4169e1;
+  color: white;
+  border: none;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------ */
+/* DAILY OVERRIDE */
+/* ------------------------------------------------------------------ */
+.override-box input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cfd2d6;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.override-box button {
+  padding: 10px 16px;
+  background: #1b3dff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.override-box button:hover {
+  background: #0f2fd0;
+}
+
+/* ---------------------------- */
+/* Modern Styled Select Inputs */
+/* ---------------------------- */
+select,
+input[type="month"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #cfd2d6;
+  background: #ffffff;
+  color: #333;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:focus,
+input[type="month"]:focus {
+  border-color: #4169e1;
+  box-shadow: 0 0 4px rgba(65, 105, 225, 0.3);
+}
+
+select:hover,
+input[type="month"]:hover {
+  border-color: #4169e1;
+}
+
+select option {
+  padding: 10px;
+}

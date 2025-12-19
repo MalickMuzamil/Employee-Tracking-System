@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-0 px-3">
+
+  <!-- Logo -->
+  <a class="navbar-brand d-flex align-items-center" routerLink="/">
+    <img src="assets/Logo2.png" alt="Logo" class="logo-img">
+  </a>
+
+  <!-- Toggler -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarMenu">
+
+    <ul class="navbar-nav ms-auto align-items-lg-center px-2">
+
+      <!-- Search (hidden on mobile) -->
+      <li class="nav-item my-2 d-lg-none">
+        <input type="text" class="form-control search-box" placeholder="Search...">
+      </li>
+
+      <li class="nav-item mx-lg-2 my-2 my-lg-0">
+        <a class="nav-link text-center">
+          <i class="fa-regular fa-bell fs-5"></i>
+        </a>
+      </li>
+
+      <li class="nav-item dropdown my-2 my-lg-0 ms-lg-3">
+        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center" role="button"
+           data-bs-toggle="dropdown">
+
+          <img src="https://i.pravatar.cc/40" class="rounded-circle me-2 user-img">
+          <span class="fw-semibold">Admin</span>
+
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <li><a class="dropdown-item">Profile</a></li>
+          <li><a class="dropdown-item">Settings</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" (click)="logout()">Logout</a></li>
+        </ul>

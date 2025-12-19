@@ -1,0 +1,16 @@
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table tr:hover {
+  background: #f8f9fa;
+}
+
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}

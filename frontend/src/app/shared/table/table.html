@@ -1,0 +1,70 @@
+@if (loading) {
+  <app-skeleton [lines]="8"></app-skeleton>
+}
+
+@if (!loading) {
+  <table class="table table-hover table-striped">
+    <thead class="table-light">
+      <tr>
+        @for (col of columns; track col) {
+
+          <!-- ⭐ HIDE COLUMN -->
+          @if (col.field !== hiddenColumn) {
+            <th>{{ col.title }}</th>
+          }
+
+        }
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (row of data; track row) {
+        <tr>
+
+          @for (col of columns; track col) {
+
+            <!-- ⭐ HIDE COLUMN -->
+            @if (col.field !== hiddenColumn) {
+
+              <td>
+
+                <!-- IMAGE COLUMN -->
+                @if (col.field === 'picture') {
+                  <img 
+                    [src]="
+                      row[col.field]
+                        ? (row[col.field].startsWith('http')
+                            ? row[col.field]
+                            : base + '/' + row[col.field])
+                        : 'assets/no-image.png'
+                    "
+                    class="avatar-img"
+                    alt="Image"
+                  />
+                }
+
+                <!-- TEXT -->
+                @if (col.field !== 'picture') {
+                  {{ row[col.field] }}
+                }
+
+              </td>
+            }
+
+          }
+
+          <td>
+            <button class="btn btn-sm btn-primary me-2" (click)="edit.emit(row)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="delete.emit(row)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+
+        </tr>
+      }
+    </tbody>
+  </table>
+}

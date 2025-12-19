@@ -1,0 +1,137 @@
+<div class="attendance-admin-container">
+
+    <!-- HEADER (No need skeleton here) -->
+    <div class="header-card shadow-sm">
+        <h2 class="title">
+            <i class="fa-solid fa-business-time me-2"></i>
+            Employee Attendance Overview
+        </h2>
+        <p class="subtitle">Daily attendance analytics, overtime & late arrivals</p>
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- FILTERS -->
+    <!-- ============================= -->
+
+    <!-- Skeleton -->
+    <app-skeleton *ngIf="departments.length === 0 || employees.length === 0" [lines]="1"></app-skeleton>
+
+    <div class="filters shadow-sm" *ngIf="departments.length > 0 && employees.length > 0">
+
+        <input type="date" class="form-control" [(ngModel)]="selectedDate" (change)="loadAttendance()">
+
+        <select class="form-select" [(ngModel)]="departmentFilter" (change)="applyFilter()">
+            <option value="">All Departments</option>
+            <option *ngFor="let d of departments" [value]="d">
+                {{ d }}
+            </option>
+        </select>
+
+        <select class="form-select" [(ngModel)]="selectedEmployee" (change)="applyFilter()">
+            <option value="">All Employees</option>
+            <option *ngFor="let e of employees" [value]="e.employee_id">
+                {{ e.name }}
+            </option>
+        </select>
+
+        <input type="text" class="form-control" placeholder="Search employee..."
+            [(ngModel)]="search" (keyup)="applyFilter()">
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- TABLE SKELETON -->
+    <!-- ============================= -->
+
+    <div *ngIf="paginatedList.length === 0" class="table-wrapper shadow-sm">
+        <!-- Skeleton Header -->
+        <app-skeleton [lines]="1"></app-skeleton>
+
+        <!-- Skeleton Rows -->
+        <app-skeleton [lines]="6"></app-skeleton>
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- ACTUAL TABLE (when loaded) -->
+    <!-- ============================= -->
+
+    <div class="table-wrapper shadow-sm" *ngIf="paginatedList.length > 0">
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Department</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Worked Hours</th>
+                    <th>Late</th>
+                    <th>Early Leave</th>
+                    <th>Overtime</th>
+                    <th>Status</th>
+                    <th>Payroll</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let row of paginatedList">
+
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.department }}</td>
+
+                    <td [class.late]="getLateMinutes(row) > 0">
+                        {{ row.check_in ? (row.check_in | date:'hh:mm a') : '—' }}
+                    </td>
+
+                    <td [class.early]="getEarlyMinutes(row) > 0">
+                        {{ row.check_out ? (row.check_out | date:'hh:mm a') : '—' }}
+                    </td>
+
+                    <td>{{ getWorkedHours(row) }}</td>
+
+                    <td [class.late]="getLateMinutes(row) > 0">
+                        {{ getLateMinutes(row) }} min
+                    </td>
+
+                    <td>{{ getEarlyMinutes(row) }} min</td>
+
+                    <td class="text-primary fw-bold">
+                        {{ getOvertime(row) }}
+                    </td>
+
+                    <td>
+                        <span class="badge bg-success" *ngIf="row.status=='Present'">Present</span>
+                        <span class="badge bg-danger" *ngIf="row.status=='Absent'">Absent</span>
+                    </td>
+
+                    <td>
+                        <button class="btn btn-primary btn-sm" (click)="generatePayroll(row)">
+                            Generate
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+    <!-- PAGINATION -->
+    <div class="text-center" *ngIf="paginatedList.length > 0">
+        <app-pagination
+            class="d-flex justify-content-end"
+            [currentPage]="currentPage"
+            [itemsPerPage]="itemsPerPage"
+            [totalItems]="filteredList.length"
+            (pageChange)="changePage($event)">
+        </app-pagination>
+    </div>
+
+</div>

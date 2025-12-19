@@ -1,0 +1,157 @@
+<div class="card salary-card p-4 shadow-lg border-0">
+
+  <h3 class="mb-4 fw-bold text-primary">
+      <i class="fa-solid fa-money-check-dollar me-2"></i> Add Salary
+  </h3>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <!-- Employee field -->
+      <div class="mb-3">
+          <label class="form-label fw-semibold">Employee</label>
+
+          <!-- Skeleton -->
+          <app-skeleton *ngIf="employees.length === 0" [lines]="2"></app-skeleton>
+
+          <!-- Actual dropdown -->
+          <select *ngIf="employees.length > 0"
+                  class="form-select"
+                  formControlName="employee_id">
+              <option value="">Select Employee</option>
+              <option *ngFor="let e of employees" [value]="e.employee_id">
+                  {{ e.name }}
+              </option>
+          </select>
+
+          <div class="invalid-text"
+               *ngIf="form.controls['employee_id'].touched && form.controls['employee_id'].invalid">
+              Employee is required
+          </div>
+      </div>
+
+
+
+      <!-- Previous Salary Skeleton -->
+      <app-skeleton
+          *ngIf="form.get('employee_id')?.value && !lastSalary && employees.length === 0"
+          [lines]="3">
+      </app-skeleton>
+
+      <!-- Previous Salary -->
+      <div *ngIf="lastSalary && employees.length > 0"
+           class="alert alert-info custom-alert mb-3">
+          <div class="d-flex align-items-start">
+              <i class="fa-solid fa-circle-info me-2 fs-5"></i>
+              <div>
+                  <strong>Previous Salary:</strong> {{ lastSalary.amount }} <br>
+                  <strong>Effective From:</strong> {{ lastSalary.effective_from | date }} <br>
+                  <strong>Effective To:</strong>
+                  {{ lastSalary.effective_to ? (lastSalary.effective_to | date) : 'Present' }}
+              </div>
+          </div>
+      </div>
+
+      <!-- No previous salary -->
+      <div *ngIf="!lastSalary && employees.length > 0 && form.get('employee_id')?.value"
+           class="alert alert-warning custom-alert mb-3">
+          <i class="fa-solid fa-circle-exclamation me-2"></i>
+          No previous salary found for this employee.
+      </div>
+
+
+
+      <!-- Salary Difference -->
+      <div *ngIf="differenceType" class="mb-3">
+
+          <div *ngIf="differenceType === 'increase'"
+               class="alert alert-success custom-alert">
+              <i class="fa-solid fa-arrow-trend-up me-2"></i>
+              <strong>Increase:</strong> +{{ salaryDifference }} <br>
+              From <strong>{{ lastSalary.amount }}</strong> →
+              <strong>{{ form.get('amount')?.value }}</strong>
+          </div>
+
+          <div *ngIf="differenceType === 'decrease'"
+               class="alert alert-danger custom-alert">
+              <i class="fa-solid fa-arrow-trend-down me-2"></i>
+              <strong>Decrease:</strong> -{{ salaryDifference }} <br>
+              From <strong>{{ lastSalary.amount }}</strong> →
+              <strong>{{ form.get('amount')?.value }}</strong>
+          </div>
+
+          <div *ngIf="differenceType === 'same'"
+               class="alert alert-secondary custom-alert">
+              <i class="fa-solid fa-minus me-2"></i>
+              <strong>No change in salary</strong>
+          </div>
+
+      </div>
+
+
+
+
+      <!-- Salary Amount -->
+      <div class="mb-3">
+          <label class="form-label fw-semibold">Salary Amount</label>
+
+          <app-skeleton *ngIf="employees.length === 0" [lines]="1"></app-skeleton>
+
+          <input *ngIf="employees.length > 0"
+                 type="number"
+                 class="form-control"
+                 formControlName="amount"
+                 placeholder="Enter salary">
+
+          <div class="invalid-text"
+               *ngIf="form.controls['amount'].touched && form.controls['amount'].invalid">
+              Enter a valid salary
+          </div>
+      </div>
+
+
+
+
+      <!-- Effective From -->
+      <div class="mb-3">
+          <label class="form-label fw-semibold">Effective From</label>
+
+          <app-skeleton *ngIf="employees.length === 0" [lines]="1"></app-skeleton>
+
+          <input *ngIf="employees.length > 0"
+                 type="date"
+                 class="form-control"
+                 formControlName="effective_from">
+
+          <div class="invalid-text"
+               *ngIf="form.controls['effective_from'].touched && form.controls['effective_from'].invalid">
+              Select an effective date
+          </div>
+      </div>
+
+
+
+
+      <!-- Note -->
+      <div class="mb-3">
+          <label class="form-label fw-semibold">Note</label>
+
+          <app-skeleton *ngIf="employees.length === 0" [lines]="2"></app-skeleton>
+
+          <textarea *ngIf="employees.length > 0"
+                    class="form-control"
+                    formControlName="note"
+                    placeholder="Optional"
+                    rows="3"></textarea>
+      </div>
+
+
+
+
+      <!-- Save Button -->
+      <button class="btn btn-primary w-100 py-2 mt-3 fs-6 fw-semibold"
+              [disabled]="form.invalid">
+          <i class="fa-solid fa-floppy-disk me-2"></i> Save Salary
+      </button>
+
+  </form>
+</div>

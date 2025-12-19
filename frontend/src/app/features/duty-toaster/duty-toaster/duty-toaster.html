@@ -1,0 +1,153 @@
+<div class="container">
+
+  <!-- FILTERS -->
+  <div class="filters">
+
+    <!-- Departments skeleton -->
+    <app-skeleton *ngIf="departments.length === 0" [lines]="1"></app-skeleton>
+
+    <!-- Departments dropdown -->
+    <select *ngIf="departments.length > 0"
+            [(ngModel)]="departmentFilter"
+            (change)="applyFilter()">
+
+      <option value="">All Departments</option>
+      <option *ngFor="let d of departments" [value]="d">{{ d }}</option>
+
+    </select>
+
+
+    <!-- Employees skeleton -->
+    <app-skeleton *ngIf="filteredList.length === 0" [lines]="1"></app-skeleton>
+
+    <!-- Employees dropdown -->
+    <select *ngIf="filteredList.length > 0"
+            [(ngModel)]="selectedEmployee"
+            (change)="selectEmployee()">
+
+      <option value="">Select Employee</option>
+      <option *ngFor="let emp of filteredList" [value]="emp.employee_id">
+        {{ emp.name }}
+      </option>
+
+    </select>
+
+  </div>
+
+
+
+  <!-- SELECTED EMPLOYEE CARD -->
+  <app-skeleton *ngIf="!selectedEmployeeInfo && selectedEmployee" [lines]="3"></app-skeleton>
+
+  <div *ngIf="selectedEmployeeInfo" class="employee-card">
+    <h2>{{ selectedEmployeeInfo.name }}</h2>
+    <p><strong>Department:</strong> {{ selectedEmployeeInfo.department_name }}</p>
+    <p><strong>Designation:</strong> {{ selectedEmployeeInfo.designation_name }}</p>
+    <p><strong>Grade:</strong> {{ selectedEmployeeInfo.grade_name }}</p>
+  </div>
+
+
+
+  <!-- SHIFT BOX -->
+  <div class="shift-box">
+
+    <h3>Assign Monthly Duty</h3>
+
+    <!-- Month skeleton -->
+    <app-skeleton *ngIf="!departments.length" [lines]="1"></app-skeleton>
+
+    <!-- Month picker -->
+    <label>Month</label>
+    <input *ngIf="departments.length > 0"
+           type="month"
+           [(ngModel)]="selectedMonth"
+           (change)="onMonthSelect()">
+
+    
+
+    <!-- COMMON SHIFT BOX -->
+    <div class="common-shift-box">
+
+      <h4>Common Shift (Optional)</h4>
+
+      <!-- Common shift skeleton -->
+      <app-skeleton *ngIf="!selectedEmployeeInfo" [lines]="3"></app-skeleton>
+
+      <ng-container *ngIf="selectedEmployeeInfo">
+
+        <label>Default Start Time</label>
+        <input type="time" [(ngModel)]="dutyStart">
+
+        <label>Default End Time</label>
+        <input type="time" [(ngModel)]="dutyEnd">
+
+        <label>Weekly Off Days</label>
+        <div class="offday-box">
+          <label *ngFor="let day of weekdays">
+            <input type="checkbox" [value]="day" (change)="toggleOffDay($event)">
+            {{ day }}
+          </label>
+        </div>
+
+        <button class="btn-apply" (click)="applyCommonShift()">Apply to Entire Month</button>
+
+      </ng-container>
+
+    </div>
+
+    <hr>
+
+
+
+    <!-- MONTH DAYS TABLE SKELETON -->
+    <app-skeleton *ngIf="selectedMonth && monthDays.length === 0" [lines]="6"></app-skeleton>
+
+
+    <!-- DAILY CUSTOMIZATION TABLE -->
+    <div *ngIf="selectedMonth && monthDays.length > 0" class="daily-table">
+
+      <h3>Customize Specific Days (Optional)</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Off?</th>
+            <th>Start</th>
+            <th>End</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let d of monthDays">
+
+            <td>{{ d.date }}</td>
+            <td>{{ d.dayName }}</td>
+
+            <td>
+              <input type="checkbox"
+                     [(ngModel)]="d.is_off"
+                     [disabled]="weeklyOffDays.includes(d.dayName)">
+            </td>
+
+            <td>
+              <input type="time" [(ngModel)]="d.start" [disabled]="d.is_off">
+            </td>
+
+            <td>
+              <input type="time" [(ngModel)]="d.end" [disabled]="d.is_off">
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+
+    <button class="btn-save mt-4" (click)="saveMonthlyDuty()">Save Monthly Duty</button>
+
+  </div>
+
+</div>

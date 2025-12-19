@@ -1,0 +1,78 @@
+/* ------------------------------------------
+   GLOBAL RESET + BASE
+------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+html {
+  font-size: 16px; /* easy scaling */
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f7f8fc;   /* professional soft gray */
+  color: #1c1c1c;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  padding: 0;
+}
+
+/* ------------------------------------------
+   TYPOGRAPHY SYSTEM — standardized for UI
+------------------------------------------- */
+
+h1 { font-size: 2.4rem; font-weight: 800; }
+h2 { font-size: 2rem; font-weight: 700; }
+h3 { font-size: 1.7rem; font-weight: 700; }
+h4 { font-size: 1.4rem; font-weight: 600; }
+h5 { font-size: 1.2rem; font-weight: 600; }
+h6 { font-size: 1rem; font-weight: 600; }
+
+p,
+span,
+a,
+label,
+li,
+input,
+button,
+small,
+strong {
+  font-family: 'Nunito', sans-serif;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #3c40c6;
+  transition: 0.2s;
+}
+
+a:hover {
+  color: #575fcf;
+}
+
+button {
+  font-family: inherit;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover {
+  background: #4338ca;
+}
+

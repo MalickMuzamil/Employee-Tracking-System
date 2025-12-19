@@ -1,0 +1,117 @@
+/* Main Card */
+.salary-card {
+  border-radius: 20px;
+  padding: 35px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.08),
+      0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Heading */
+.salary-card h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d6efd;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+/* Form Elements */
+.form-control,
+.form-select {
+  height: 48px !important;
+  border-radius: 12px !important;
+  border: 1px solid #e3e6eb !important;
+  font-size: 15px;
+  transition: 0.25s;
+  background: #fdfdfd;
+}
+
+/* Textarea */
+textarea.form-control {
+  height: 120px !important;
+}
+
+/* Focus effect */
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15) !important;
+  background: #ffffff;
+}
+
+/* Placeholder */
+.form-control::placeholder {
+  color: #b9b9b9;
+}
+
+/* Alerts */
+.custom-alert {
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 15px;
+  border-left-width: 4px !important;
+}
+
+.alert-info {
+  border-left: 4px solid #0dcaf0 !important;
+}
+
+.alert-warning {
+  border-left: 4px solid #ffc107 !important;
+}
+
+.alert-success {
+  border-left: 4px solid #198754 !important;
+}
+
+.alert-danger {
+  border-left: 4px solid #dc3545 !important;
+}
+
+/* Error Text */
+.invalid-text {
+  color: #e63946;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* Button */
+.btn-primary {
+  border-radius: 12px !important;
+  font-size: 17px;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #4a90ff, #6aa9ff) !important;
+  border: none !important;
+  transition: 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(56, 122, 255, 0.35);
+}
+
+.btn-primary:disabled {
+  background: #b6d1ff !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .salary-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+}
